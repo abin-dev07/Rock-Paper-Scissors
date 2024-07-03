@@ -14,7 +14,7 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    const step = prompt("Your Move")
+    const step = prompt("You are playing with the Machine, Machine already made a step,its your turn now :) Valid options [rock,paper and scissors] ")
     return(step.toLowerCase())
 }
 
@@ -72,9 +72,11 @@ function playGame(rounds){
     }
     if(humanScore>computerScore){
         console.log("Human Won the GAME!!! Score: ",humanScore,"Machine Score: ",computerScore)
+        alert("Human Won the GAME!!! ")
     }
     else{
         console.log("Machine Won the GAME!!! Score:",computerScore,"HumanScore :",humanScore)
+        alert("Machine Won the GAME!!!")
     }
 
 }
