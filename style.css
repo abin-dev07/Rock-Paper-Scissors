@@ -1,0 +1,63 @@
+*{
+   margin: 0px; 
+   padding: 0px;
+}
+.container{
+    margin: 5em 0 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    padding-bottom: 10px;
+}
+.options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5em;
+}
+
+.button{
+
+    border: none;
+    border-radius: 3px;
+    width: 260px;
+    height: 35px;
+    background-color: rgb(208, 209, 118);
+    font-size: medium;
+    font-weight: 800;
+    color: rgb(2, 11, 18);
+}
+
+.symbols{
+    width: 260px;
+    height: 250px;
+}
+
+.score{
+    font-size: 34px;
+    font-weight: 600;
+
+}
+.scoreboard{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+.notifications{
+    font-size: 30px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    
+}

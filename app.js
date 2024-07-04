@@ -1,3 +1,7 @@
+let humanScore =0;
+let computerScore=0;
+
+const btns = document.querySelectorAll("button");
 
 function getComputerChoice(){
     const step = Math.random() *2-1
@@ -13,77 +17,99 @@ function getComputerChoice(){
      
 }
 
-function getHumanChoice(){
-    const step = prompt("You are playing with the Machine, Machine already made a step,its your turn now :) Valid options [rock,paper and scissors] ")
-    return(step.toLowerCase())
+
+for (const btn of btns){
+    btn.addEventListener("click", (e) => {
+        playerChoice = btn.innerHTML
+        gameHandle(playerChoice.toLowerCase())
+    })
 }
 
-function playGame(rounds){
-    let humanScore =0;
-    let computerScore=0;
-    // const humanSelection = getHumanChoice();
-    // const computerSelection = getComputerChoice();
-    function playRound(humanChoice,computerChoice){
-    
-        if(humanChoice==computerChoice){
-            console.log("Oops! Both are",humanChoice);
-            humanScore+=0;
-            computerScore+=0;
-            console.log("The HumanScore:",humanScore,"The Machine Score:",computerScore)
-        }
-        else if(humanChoice=="rock" && computerChoice=="scissors"){
-            console.log("Rock beats Scissors")
-            humanScore+=1;
-            console.log("The HumanScore:",humanScore,"The Machine Score:",computerScore)
-        }
-        else if(humanChoice=="rock" && computerChoice=="paper"){
-            console.log("Paper beats Rock")
-            computerScore+=1;
-            console.log("The HumanScore:",humanScore,"The Machine Score:",computerScore)
-        }
-        else if(humanChoice=="paper" && computerChoice=="rock"){
-            console.log("paper beats Rock")
-            computerScore+=1
-            console.log("The HumanScore:",humanScore,"The Machine Score:",computerScore)
-        }
-        else if(humanChoice=="paper" && computerChoice=="scissors"){
-            console.log("Scissors beats Paper")
-            computerScore+=1;
-            console.log("The HumanScore:",humanScore,"The Machine Score:",computerScore)
-        }
-        else if(humanChoice=="scissors" && computerChoice=="Rock"){
-            console.log("Rock beats Scissors")
-            computerScore+=1;
-            console.log("The HumanScore:",humanScore,"The Machine Score:",computerScore)
-        }
-        else if(humanChoice=="scissors" && computerChoice=="paper"){
-            console.log("Scissors beats paper")
-            humanScore+=1;
-            console.log("The HumanScore:",humanScore,"The Machine Score:",computerScore)
 
+function gameHandle(userchoice){
+    if(humanScore >= 5 || computerScore >= 5 ){
+
+        if(humanScore==5){
+            setTimeout(3000)
+            alert("WooHoo You Won :) \nReady For the Next Round")
+            humanScore=0;
+            computerScore=0
+            document.getElementById("score").innerHTML=""
+            document.getElementById("notifications").innerHTML=""
         }else{
-            console.log("The Human entered an Invalid Input, You lost your chance :)")
+            alert("Ohh Nooo You Lost :( \nChill Buddy Try Again")
+            humanScore=0;
+            computerScore=0
+            document.getElementById("score").innerHTML=""
+            document.getElementById("notifications").innerHTML=""
         }
-    }
-
-    for(i =0;i<rounds;i++){
+        console.log("Need to start again")
         
-        playRound(getHumanChoice(), getComputerChoice());
-    }
-    if(humanScore>computerScore){
-        console.log("Human Won the GAME!!! Score: ",humanScore,"Machine Score: ",computerScore)
-        alert("Human Won the GAME!!! ")
-    }
-    else{
-        console.log("Machine Won the GAME!!! Score:",computerScore,"HumanScore :",humanScore)
-        alert("Machine Won the GAME!!!")
-    }
 
+    }else{
+        let computerChoice = getComputerChoice();
+        playRound(userchoice,computerChoice);
+    }
+    
 }
+function playRound(humanChoice,computerChoice){
 
-playGame(5)
+    notificationMsg=""
+    scoreString=""
+    resultMsg=""
 
+    if(humanChoice==computerChoice){
+        notificationMsg=`Oops! You Both choosen,${humanChoice}`
+        document.getElementById("notifications").innerHTML=notificationMsg
+        humanScore+=0;
+        computerScore+=0;
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+    }
+    else if(humanChoice=="rock" && computerChoice=="scissors"){
+        notificationMsg="Rock beats Scissors"
+        document.getElementById("notifications").innerHTML=notificationMsg
+        humanScore+=1;
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+    }
+    else if(humanChoice=="rock" && computerChoice=="paper"){
+        notificationMsg="Paper beats Rocks"
+        document.getElementById("notifications").innerHTML=notificationMsg
+        computerScore+=1;
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+    }
+    else if(humanChoice=="paper" && computerChoice=="rock"){
+        notificationMsg="Paper beats Rocks"
+        document.getElementById("notifications").innerHTML=notificationMsg
+        humanScore+=1
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+    }
+    else if(humanChoice=="paper" && computerChoice=="scissors"){
+        notificationMsg="Scissors beats Paper"
+        document.getElementById("notifications").innerHTML=notificationMsg
+        computerScore+=1;
+        scoreString=   `Your Score : ${humanScore} The Machine Score :${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+    }
+    else if(humanChoice=="scissors" && computerChoice=="rock"){
+        notificationMsg="Rock beats Scissors"
+        document.getElementById("notifications").innerHTML=notificationMsg
+        computerScore+=1;
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+    }
+    else if(humanChoice=="scissors" && computerChoice=="paper"){
+        notificationMsg="Scissors beats paper"
+        document.getElementById("notifications").innerHTML=notificationMsg
+        humanScore+=1;
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
 
-
-
+    }else{
+        console.log("The Human entered an Invalid Input, You lost your chance :)")
+    }
+}
 

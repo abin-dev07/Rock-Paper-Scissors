@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock&paper</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
-<script src="app.js"></script>
+
 <body>
+    <div class="container">
+        <h1>Lets Play</h1>
+        <div class="options">
+            <div class="card">
+                <img src="images/rock.jpg" class="symbols" alt="HandSymbols">
+                <button class="button">Rock</button>
+            </div>
+            <div class="card">
+                <img src="images/paper.jpg" class="symbols" alt="HandSymbols">
+                <button class="button">Paper</button>
+            </div>
+            <div class="card">
+                <img src="images/scissors.jpg" class="symbols" alt="HandSymbols">
+                <button class="button">Scissors</button>
+            </div>
+        </div>
+        <div class="scoreboard">
+            <div class="notifications" id="notifications"></div>
+            <div class="score" id="score"></div>
+            <div class="result"></div>
+        </div>
+        
+    </div>
 
 </body>
 </html>
