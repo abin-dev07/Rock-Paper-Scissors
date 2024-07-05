@@ -3,6 +3,7 @@ let computerScore=0;
 
 const btns = document.querySelectorAll("button");
 
+// Function: To generate Random option by Machine
 function getComputerChoice(){
     const step = Math.random() *2-1
     if(step<=0){
@@ -17,21 +18,31 @@ function getComputerChoice(){
      
 }
 
+// EVENT HANADLING  
 
 for (const btn of btns){
     btn.addEventListener("click", (e) => {
         playerChoice = btn.innerHTML
         if(humanScore<=5 && computerScore <=5){
             gameHandle(playerChoice.toLowerCase())
-            counter()
+            // counter()
         }
         
     })
 }
 
-function counter(){
-    console.log("Counter ")
 
+function gameHandle(userchoice){
+    if(humanScore<=5 && computerScore <=5){
+        let computerChoice = getComputerChoice();
+        playRound(userchoice,computerChoice);
+    }
+    
+}
+function playRound(humanChoice,computerChoice){
+
+    notificationMsg=""
+    scoreString=""
     resultMsg=""
     if(humanScore==5){
         scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
@@ -70,22 +81,7 @@ function counter(){
         
     }
 
-}
-
-
-function gameHandle(userchoice){
-    if(humanScore<=5 && computerScore <=5){
-        let computerChoice = getComputerChoice();
-        playRound(userchoice,computerChoice);
-    }
-    
-}
-function playRound(humanChoice,computerChoice){
-
-    notificationMsg=""
-    scoreString=""
-    
-    if(humanChoice==computerChoice){
+    else if(humanChoice==computerChoice){
         notificationMsg=`Oops! You Both choosen,${humanChoice}`
         document.getElementById("notifications").innerHTML=notificationMsg
         humanScore+=0;
