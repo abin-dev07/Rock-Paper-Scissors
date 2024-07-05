@@ -57,8 +57,20 @@ function playRound(humanChoice,computerChoice){
     notificationMsg=""
     scoreString=""
     resultMsg=""
+    if(humanScore>=5){
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+        resultMsg="Woo Hoo !! You Won :)"
+        document.getElementById("result").innerHTML-resultMsg;
+    }
+    else if(humanScore>=5){
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+        resultMsg="Ohh Nooo..... Machine Won :)"
+        document.getElementById("result").innerHTML-resultMsg;
+    }
 
-    if(humanChoice==computerChoice){
+    else if(humanChoice==computerChoice){
         notificationMsg=`Oops! You Both choosen,${humanChoice}`
         document.getElementById("notifications").innerHTML=notificationMsg
         humanScore+=0;
