@@ -74,9 +74,10 @@ function counter(){
 
 
 function gameHandle(userchoice){
-   
-    let computerChoice = getComputerChoice();
-    playRound(userchoice,computerChoice);
+    if(humanScore<=5 && computerScore <=5){
+        let computerChoice = getComputerChoice();
+        playRound(userchoice,computerChoice);
+    }
     
 }
 function playRound(humanChoice,computerChoice){
