@@ -21,56 +21,70 @@ function getComputerChoice(){
 for (const btn of btns){
     btn.addEventListener("click", (e) => {
         playerChoice = btn.innerHTML
-        gameHandle(playerChoice.toLowerCase())
+        if(humanScore<=5 && computerScore <=5){
+            gameHandle(playerChoice.toLowerCase())
+            counter()
+        }
+        
     })
+}
+
+function counter(){
+    console.log("Counter ")
+
+    resultMsg=""
+    if(humanScore==5){
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+        resultMsg="Woo Hoo !! You Won :)"
+        console.log(resultMsg,"FROM HUMAN")
+        document.getElementById("result").innerHTML=resultMsg;
+        // Next Round
+        setTimeout(()=>{
+            humanScore=0;
+            computerScore=0
+            document.getElementById("score").innerHTML="";
+            document.getElementById("notifications").innerHTML="";
+            document.getElementById("result").innerHTML="";
+            console.log("Need to start again")
+            // alert("WooHoo You Won :) \nReady For the Next Round");
+        },2000)
+    }
+    else if(computerScore==5){
+        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
+        document.getElementById("score").innerHTML=scoreString;
+        resultMsg="Ohh Nooo..... Machine Won :)"
+        document.getElementById("result").innerHTML=resultMsg;
+        console.log(resultMsg,"FROM COMP")
+        // Reset Game
+        
+        setTimeout(()=>{
+            humanScore=0;
+            computerScore=0
+            document.getElementById("score").innerHTML="";
+            document.getElementById("notifications").innerHTML="";
+            document.getElementById("result").innerHTML="";
+            console.log("Need to start again")
+            // alert("Ohh Nooo You Lost :( \nChill Buddy Try Again");
+        },2000)
+        
+    }
+
 }
 
 
 function gameHandle(userchoice){
-    if(humanScore >= 5 || computerScore >= 5 ){
-
-        if(humanScore==5){
-            setTimeout(3000)
-            alert("WooHoo You Won :) \nReady For the Next Round")
-            humanScore=0;
-            computerScore=0
-            document.getElementById("score").innerHTML=""
-            document.getElementById("notifications").innerHTML=""
-        }else{
-            alert("Ohh Nooo You Lost :( \nChill Buddy Try Again")
-            humanScore=0;
-            computerScore=0
-            document.getElementById("score").innerHTML=""
-            document.getElementById("notifications").innerHTML=""
-        }
-        console.log("Need to start again")
-        
-
-    }else{
-        let computerChoice = getComputerChoice();
-        playRound(userchoice,computerChoice);
-    }
+   
+    let computerChoice = getComputerChoice();
+    playRound(userchoice,computerChoice);
     
 }
 function playRound(humanChoice,computerChoice){
 
     notificationMsg=""
     scoreString=""
-    resultMsg=""
-    if(humanScore>=5){
-        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
-        document.getElementById("score").innerHTML=scoreString;
-        resultMsg="Woo Hoo !! You Won :)"
-        document.getElementById("result").innerHTML-resultMsg;
-    }
-    else if(humanScore>=5){
-        scoreString=   `Your Score: ${humanScore} The Machine Score:${computerScore}`
-        document.getElementById("score").innerHTML=scoreString;
-        resultMsg="Ohh Nooo..... Machine Won :)"
-        document.getElementById("result").innerHTML-resultMsg;
-    }
-
-    else if(humanChoice==computerChoice){
+    
+    if(humanChoice==computerChoice){
         notificationMsg=`Oops! You Both choosen,${humanChoice}`
         document.getElementById("notifications").innerHTML=notificationMsg
         humanScore+=0;
